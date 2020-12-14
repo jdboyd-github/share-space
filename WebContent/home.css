@@ -1,0 +1,179 @@
+.post li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ #post-form {
+	width: 500px;
+	margin-top: 10px;
+}
+
+.form-group {
+	width: 100%;
+	font-size: 17px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+
+.form-group input[type="text"] {
+	padding-left: 20px;
+}
+
+.display-group {
+	width: 100%;
+}
+
+#displaytitle {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 23px;
+	text-align: justify;
+	margin-bottom: 8px;
+}
+
+#displaystatus {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	text-align: justify;
+}
+
+.form-group input,
+.form-group textarea {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid rgba(128, 128, 128, 0.199);
+	border-radius: 16px;
+	outline: none;
+}
+
+.form-group textarea {
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+button[type="submit"]{
+	width: 25%;
+	border: none;
+	outline: none;
+	padding: 7px;
+	font-size: 17px;
+	margin-top: 5px;
+	border-radius: 16px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	cursor:pointer;
+}
+
+.create {
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+
+.container {
+	margin: 0 auto;
+	padding: 10px;
+	padding-top: 25px;
+	background-color: #FAFAFA;
+	border-radius: 12px;
+	margin-bottom: 25px;
+}
+
+.username {
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 40px;
+	font-weight: 600;
+	line-height: 40px;
+}
+
+.name {
+	margin: 0;
+	padding: 0;
+	font-size: 18px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+
+.information li{
+	list-style: none;
+	float: right;
+	clear: right;
+	margin: 0;
+	padding: 0;
+}
+
+.column {
+	float: left;
+}
+
+.left, .right, .middle {
+	height: 100vh;
+	width: 100%;
+	padding: 50px;
+}
+
+.left {
+	background-color: #white;
+}
+
+.right {
+	background-color: #white;
+}
+
+.middle {
+	background-color: white;
+}
+
+.avatar {
+	width: 150px;
+	clip-path: circle();
+	margin-bottom: 30px;
+}
+
+.search {
+	margin: 0px;
+	margin-top: 60px;
+}
+
+.search input[type="text"] {
+	width: 100%;
+	padding: 7px;
+	padding-left: 20px;
+	box-sizing: border-box;
+	background-color: #F8F8F8;
+	border: 2px solid #fff;
+	border-radius: 30px;
+	padding-right: 30px;
+	color: black;
+	outline: none;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+}
+
+::-webkit-input-placeholder {
+	color: black;
+}
+
+::-moz-placeholder {
+	color: black;
+}
+
+::-ms-input-placeholder {
+	color: black;
+}
+
+.fa-search {
+	position: absolute;
+	top: 371px;
+	right: 72px;
+	font-size: 20px;
+	color: #black;
+}
