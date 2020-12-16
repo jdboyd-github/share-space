@@ -1,3 +1,4 @@
+package app;
 // Import Statements
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,17 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 import util.DBConnection;
 
 /**
- * Servlet implementation class MyServlet
+ * Servlet implementation class Login
  */
-@WebServlet("/Signup")
-public class Signup extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	
+	// Global Variables
+	static String username, password;
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	// Class Constructor
-	public Signup() {
+	public Login() {
 		super();
 	}
 
@@ -45,68 +49,52 @@ public class Signup extends HttpServlet {
 		ResultSet result = null;
 		
 		// User Information
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String verification = request.getParameter("verification");
+		getUserInfo(request);
 		
-
+		// If any input from login page is blank, throw error and return
+		if(!checkErrors(username, password, out))
+			return;
+		
+		// Initializing Variables
+		response.setContentType("text/html");
+		
 		// Try block for database connection
 		try {
 			// Connecting to database through JDBC
 			DBConnection.getDBConnection();
 			connection = DBConnection.connection;
 			
-			// Checking User table for email or username match
-			insertSql = "SELECT * FROM User WHERE email = ? OR username = ?";
+			// Checking User table for email and password match
+			insertSql = "SELECT * FROM User WHERE username = ? AND password = ?";
 			
 			// Preparing command statement for console
 			PreparedStatement preparedStmt = connection.prepareStatement(insertSql);
-			preparedStmt.setString(1, email);
-			preparedStmt.setString(2, username);
+			preparedStmt.setString(1, username);
+			preparedStmt.setString(2, password);
 			
 			// Executing MySQL command and storing output in result
 			result = preparedStmt.executeQuery();
 			
-			// If account does not already exist, continue
-			if(!result.next())
+			// If login information is correct, redirect to user home page
+			if(result.next())
 			{
-				// Checking to see if password matches verification
-				if(!password.equals(verification))
-				{
-					// Alert and redirect if they dont match
-					out.println("<script type=\"text/javascript\">");
-			       	out.println("alert('Your passwords do not match. Please try again.');");
-			       	out.println("window.location = 'signup.html'");
-			       	out.println("</script>");
-				}
-				
-				// Creating new account in MySQL database
-				insertSql = "INSERT INTO User (firstName, lastName, email, username, password, birthday) VALUES (?, ?, ?, ?, ?, ?)";
-				
-				// Preparing command statement for console
-				preparedStmt = connection.prepareStatement(insertSql);
-				preparedStmt.setString(1, "first");
-				preparedStmt.setString(2, "last");
-				preparedStmt.setString(3, email);
-				preparedStmt.setString(4, username);
-				preparedStmt.setString(5, password);
-				preparedStmt.setString(6, "2020-01-01");
-				
-				// Executing MySQL command
-				preparedStmt.execute();
-				
-				// Notify success, redirect user to home page
-				out.println("<script type=\"text/javascript\">");
-		       	out.println("alert('Account Successfully Created!');");
-		       	out.println("</script>");
-		       	
-		       	// Redirect to home page
-		       	request.setAttribute("email", email);
+				request.setAttribute("username", username);
 				RequestDispatcher rd = request.getRequestDispatcher("Home");
 				rd.forward(request, response);
 			}
 			
+			// If login information is incorrect, display error and return
+			else
+			{
+				// Alert and redirect
+				out.println("<script type=\"text/javascript\">");
+		       	out.println("alert('Invalid username or password.');");
+		       	out.println("window.location = 'login.html'");
+		       	out.println("</script>");
+		       	
+		       	return;
+			}
+		
 		// Catch block to catch errors
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,5 +110,30 @@ public class Signup extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	
+	// Checks if any input values are empty, and returns boolean value
+	public static boolean checkErrors(String username, String password, PrintWriter out)
+	{
+		// If username or password is blank
+		if(username.length() < 1 || password.length() < 1)
+		{
+			// Alert and redirect
+			out.println("<script type=\"text/javascript\">");
+	       	out.println("alert('Please fill out all required fields.');");
+	       	out.println("window.location = 'login.html'");
+	       	out.println("</script>");
+			
+			return false;
+		}
+			
+		return true;
+	}
+	
+	// Get user info and store in global variables
+	static void getUserInfo(HttpServletRequest request)
+	{
+		// Getting User Information and storing in global variable
+		username = request.getParameter("username");
+		password = request.getParameter("password");
+	}
 }

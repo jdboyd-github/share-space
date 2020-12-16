@@ -1,9 +1,8 @@
+package app;
 // Import Statements
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,17 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import util.DBConnection;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class MyServlet
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Post")
+public class Post extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	// Class Constructor
-	public Login() {
+	public Post() {
 		super();
 	}
 
@@ -38,18 +37,28 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		
 		// Instance Variables
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		Connection connection = null;
 		String insertSql;
-		ResultSet result = null;
 		
 		// User Information
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String title = request.getParameter("title");
+		String message = request.getParameter("status");
+		String username = request.getParameter("username");
 		
-		// Initializing Variables
-		response.setContentType("text/html");
+		// If any input from post form is blank, throw error and return
+		if(title.length() < 1 || message.length() < 1)
+		{
+			// Instance Variables
+			RequestDispatcher rd = request.getRequestDispatcher("Home");
+			
+			// Setting variables and forwarding
+	       	request.setAttribute("username", username);
+	       	request.setAttribute("error", "required_fields");
+			rd.forward(request, response);
+			
+			return;
+		}
 		
 		// Try block for database connection
 		try {
@@ -57,36 +66,23 @@ public class Login extends HttpServlet {
 			DBConnection.getDBConnection();
 			connection = DBConnection.connection;
 			
-			// Checking User table for email and password match
-			insertSql = "SELECT * FROM User WHERE email = ? AND password = ?";
+			// Creating post in MySQL database
+			insertSql = "INSERT INTO Post (title, message, username) VALUES (?, ?, ?)";
 			
 			// Preparing command statement for console
 			PreparedStatement preparedStmt = connection.prepareStatement(insertSql);
-			preparedStmt.setString(1, email);
-			preparedStmt.setString(2, password);
+			preparedStmt.setString(1, title);
+			preparedStmt.setString(2, message);
+			preparedStmt.setString(3, username);
+				
+			// Executing MySQL command
+			preparedStmt.execute();
+		       	
+		    // Redirect to home page
+		    request.setAttribute("username", username);
+		    RequestDispatcher rd = request.getRequestDispatcher("Home");
+			rd.forward(request, response);
 			
-			// Executing MySQL command and storing output in result
-			result = preparedStmt.executeQuery();
-			
-			// If login information is correct, redirect to user home page
-			
-			if(result.next())
-			{
-				request.setAttribute("email", email);
-				RequestDispatcher rd = request.getRequestDispatcher("Home");
-				rd.forward(request, response);
-			}
-			
-			// If login information is incorrect, display error and redirect to login
-			else
-			{
-				// Alert and redirect
-				out.println("<script type=\"text/javascript\">");
-		       	out.println("alert('Email or Password incorrect. Please try again.');");
-		       	out.println("window.location = 'login.html'");
-		       	out.println("</script>");
-			}
-		
 		// Catch block to catch errors
 		} catch (Exception e) {
 			e.printStackTrace();
