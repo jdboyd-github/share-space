@@ -1,10 +1,14 @@
+body {
+	background-color: #F6F7F8 !important;
+}
+
 .post li {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
- #post-form {
+#post-form {
 	width: 500px;
 	margin-top: 10px;
 }
@@ -40,8 +44,7 @@
 	text-align: justify;
 }
 
-.form-group input,
-.form-group textarea {
+.form-group input, .form-group textarea {
 	width: 100%;
 	padding: 5px;
 	border: 1px solid rgba(128, 128, 128, 0.199);
@@ -54,17 +57,26 @@
 	padding-left: 20px;
 }
 
-button[type="submit"]{
-	width: 25%;
-	border: none;
+.sub[type="submit"] {
+	width: 20%;
+	border: 2px solid #2AFC98;
 	outline: none;
-	padding: 7px;
+	padding: 6px;
 	font-size: 17px;
 	margin-top: 5px;
-	border-radius: 16px;
+	border-radius: 24px;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 15px;
-	cursor:pointer;
+	font-weight: 400;
+	cursor: pointer;
+	background: none;
+	text-align: center;
+	color: black;
+	transition: 0.25s;
+}
+
+.sub[type="submit"]:hover {
+	background: #2AFC98;
 }
 
 .create {
@@ -79,9 +91,9 @@ button[type="submit"]{
 	margin: 0 auto;
 	padding: 10px;
 	padding-top: 25px;
-	background-color: #FAFAFA;
+	background-color: #f1f1f1;
 	border-radius: 12px;
-	margin-bottom: 25px;
+	margin-bottom: 30px;
 }
 
 .username {
@@ -91,6 +103,8 @@ button[type="submit"]{
 	font-size: 40px;
 	font-weight: 600;
 	line-height: 40px;
+	float: right;
+	clear: right;
 }
 
 .name {
@@ -101,7 +115,7 @@ button[type="submit"]{
 	font-weight: 400;
 }
 
-.information li{
+.information li {
 	list-style: none;
 	float: right;
 	clear: right;
@@ -120,26 +134,29 @@ button[type="submit"]{
 }
 
 .left {
-	background-color: #white;
+	background-color: #F6F7F8;
 }
 
 .right {
-	background-color: #white;
+	background-color: #F6F7F8;
 }
 
 .middle {
-	background-color: white;
+	background-color: #F6F7F8;
 }
 
-.avatar {
-	width: 150px;
+img {
+	width: 165px;
 	clip-path: circle();
-	margin-bottom: 30px;
+	margin-bottom: 25px;
+	float: right;
+	clear: right;
 }
 
 .search {
-	margin: 0px;
-	margin-top: 60px;
+	margin: 0;
+	margin-top: 27px;
+	outline: none;
 }
 
 .search input[type="text"] {
@@ -147,8 +164,8 @@ button[type="submit"]{
 	padding: 7px;
 	padding-left: 20px;
 	box-sizing: border-box;
-	background-color: #F8F8F8;
-	border: 2px solid #fff;
+	background-color: #f1f1f1;
+	border: 2px solid #f1f1f1;
 	border-radius: 30px;
 	padding-right: 30px;
 	color: black;
@@ -156,6 +173,7 @@ button[type="submit"]{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
 	font-size: 18px;
+	padding-bottom: 4px;
 }
 
 ::-webkit-input-placeholder {
@@ -172,8 +190,32 @@ button[type="submit"]{
 
 .fa-search {
 	position: absolute;
-	top: 371px;
+	top: 345px;
 	right: 72px;
 	font-size: 20px;
-	color: #black;
+	color: black;
+}
+
+.nav_links {
+	float: right;
+	clear: right;
+	list-style: none;
+	margin-top: -35px;
+}
+
+.link[type="submit"] {
+	background: transparent;
+	border: none;
+	outline: none;
+	padding: 0px;
+	font-size: 17px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	cursor: pointer;
+	float: right;
+	outline-color:
+}
+
+ul {
+	overflow: hidden;
 }
