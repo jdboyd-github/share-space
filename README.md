@@ -1,2 +1,3 @@
 # share-space
-Social Media Web Application that allows users to create and like posts across the platform.
+## Overview
+ShareSpace is a Social Media Web Application that allows users to create and like posts across the platform. This projected was created for a project in Introduction to Software Engineering (CSCI-4830).
