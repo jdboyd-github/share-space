@@ -11,3 +11,13 @@ ShareSpace is a Social Media Web Application that allows users to create and lik
 * Search and view other user profiles.
 * See all previous posts from other users on their selective profiles.
 * Displays errors on on all instances of invalid information in forms.
+
+## Development
+### Developer
+Web Application created and built by [Daniel Boyd](https://github.com/jdboyd-github).
+
+### Web Technologies and Languages <br>
+`Amazon Web Services` running Linux-based operating system `Ubuntu`, with `Apache Tomcat 7`.
+`Eclipse IDE` and `Atom` for all programming and project development.
+`Java Servlet` and `JDBC` for web functions and database interaction. `Java` and `JavaScript` for all programming logic.
+`HTML` and `CSS` for all web design and user interface. `GitHub` version control system used for organization and project submission.
