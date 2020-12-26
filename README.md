@@ -19,5 +19,5 @@ Web Application created and built by [Daniel Boyd](https://github.com/jdboyd-git
 ### Web Technologies and Languages <br>
 `Amazon Web Services` running Linux-based operating system `Ubuntu`, with `Apache Tomcat 7`.
 `Eclipse IDE` and `Atom` for all programming and project development.
-`Java Servlet` and `JDBC` for web functions and database interaction. `Java` and `JavaScript` for all programming logic.
+`Java Servlet` and `JDBC` for web functions and database interaction via `MySQL`. `Java` and `JavaScript` for all programming logic.
 `HTML` and `CSS` for all web design and user interface. `GitHub` version control system used for organization and project submission.
