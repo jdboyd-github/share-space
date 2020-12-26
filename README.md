@@ -12,6 +12,12 @@ ShareSpace is a Social Media Web Application that allows users to create and lik
 * See all previous posts from other users on their selective profiles.
 * Displays errors on on all instances of invalid information in forms.
 
+## Usage
+Simply created an account using the 'Create An Account' page, and login using user information. Users can then create posts with a selected title and message, which will be shared with other ShareSpace users after pressing the 'Submit' button. Users can also search for other user profiles, and see other users posts. <br>
+
+**Test Accounts :**
+`jdboyd`, `gelp51`
+
 ## Development
 ### Developer
 Web Application created and built by [Daniel Boyd](https://github.com/jdboyd-github).
